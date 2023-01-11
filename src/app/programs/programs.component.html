@@ -1,0 +1,25 @@
+<div id="content">
+    <p id="selectOther" (click)="selectOther()">Choisir une autre date</p>
+    <div id="selectTime">
+        <p *ngFor="let time of times" (click)="changeTime(time.type)" [ngClass]="{'selectedTime' : time.type === selectedTime}">{{time.text}}</p>
+    </div>
+    <div id="channelsContainer" >
+        <div class="channel" *ngFor="let channel of channels">
+            <div class="channelHeader">
+               <p class="channelName">
+                {{channel.name}}
+               </p>
+                <!-- <img src="{{channel.icon}}" alt=""> -->
+            </div>
+            <div class="programsWrapper">
+                <div class="programs" *ngFor="let program of channel.displayPrograms" (click)="getInfo(program)">
+                    <div class="programHeader">
+                        <h3>{{program.name}}</h3>
+                        <p class="dateProgram">{{timestampToDate(program.start)}} ➡ {{timestampToDate(program.end)}}</p>
+                    </div>
+                    <img class="iconProgram" src="{{program.icon}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

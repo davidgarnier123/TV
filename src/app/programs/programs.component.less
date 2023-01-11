@@ -1,0 +1,133 @@
+#content {
+    #selectOther {
+        text-align: center;
+        color: white;
+        padding-top: 1em;
+        cursor: pointer;
+        transition-duration: 0.2s;
+    }
+    #selectOther:hover {
+        color: orange;
+    }
+    #selectTime {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 1em;
+        p {
+            color: white;
+            border: 1px solid orange;
+            width: 33%;
+            text-align: center;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            cursor: pointer;
+            background-color: transparent;
+            transition-duration: 0.2s;
+            &.selectedTime {
+                background-color: orange;
+            }
+        }
+    }
+    >#channelsContainer {
+        display: flex;
+        flex-direction: column;
+        >.channel {
+            display: flex;
+            margin: 0 auto;
+            margin-bottom: 2em;
+            padding-bottom: 1em;
+            padding-top: 1em;
+            width: 70%;
+            flex-direction: column;
+            >.channelHeader {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 1em;
+                >.channelName {
+                    color: orange;
+                    font-size: 1.5em;
+                    font-weight: 500;
+                    margin: 0;
+                }
+                >img {
+                    width: 3em;
+                }
+            }
+        >.programsWrapper {
+            display: flex;
+            justify-content: space-between;
+            >.programs {
+                display: flex;
+                flex-direction: row;
+                border: 1px solid black;
+                width: 45%;
+                text-align: center;
+                cursor: pointer;
+                transition-duration: 0.2s;
+                justify-content: space-between;
+                >.programHeader {
+                    display: flex;
+                    align-items: center; 
+                    justify-content: center;
+                    width: 45%;
+                    flex-direction: column;
+                    >.dateProgram {
+                        color: lightgrey;
+                        margin-top: 0.5em;
+                        margin-bottom: 0.5em;
+                    }
+                    h3 {
+                        color: white;
+                        font-weight: 400;
+                        letter-spacing: 0.1em;
+                    }
+                }
+                >.iconProgram {
+                    width: 45%;
+                }
+            }
+
+            >.programs:hover {
+                border: 1px solid orange;
+            }
+        }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1400px) {
+    #content {
+        >#channelsContainer {
+            >.channel {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    #content {
+        #selectTime {
+            width: 100%;
+        }
+        >#channelsContainer {
+            >.channel {
+                >.programsWrapper {
+                    >.programs {
+                        flex-direction: column-reverse;
+                        >.programHeader {
+                            width: 100%;
+                            margin-top: 1em;
+                        }
+                        >.iconProgram {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }

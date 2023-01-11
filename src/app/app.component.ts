@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProgramsService } from '../services/programs.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'tv';
+  constructor (private _programsService: ProgramsService) {
+
+  }
+
+  ngOnInit() {
+    this._programsService.fetchProgramsData();
+  }
+
 }
