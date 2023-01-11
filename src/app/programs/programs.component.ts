@@ -41,7 +41,7 @@ export class ProgramsComponent implements OnInit {
   }
 
   public findProgramsNow = () => {
-    let nowTs = moment().unix();
+    let nowTs = moment().add(1, 'hour').unix();
 
     this.channels.forEach( (chan: any) => {
       chan.displayPrograms = [];
@@ -55,11 +55,11 @@ export class ProgramsComponent implements OnInit {
   }
 
   public findProgramTonight = () => {
-    // get current date at 20h50m
-    let tonightTs = moment().set('hour', 21).set('minute', 50).unix();
+    // get current date at 21h0m
+    let tonightTs = moment().set('hour', 22).set('minute', 0).unix();
     // tomorrow
     if (this.selectedTime === 'tomorrow') {
-      tonightTs = moment().set('hour', 21).set('minute', 50).add(1, 'day').unix();
+      tonightTs = moment().set('hour', 22).set('minute', 0).add(1, 'day').unix();
     }
 
     this.channels.forEach( (chan: any) => {
@@ -74,7 +74,8 @@ export class ProgramsComponent implements OnInit {
   }
 
   public timestampToDate = (timestamp: number) => {
-    return moment.unix(timestamp).format('HH:mm');
+    // we need to substract because api doest work with winter hours
+    return moment.unix(timestamp).subtract(1, "hour").format('HH:mm');
   }
 
   public changeTime = (typeTime: string) => {
