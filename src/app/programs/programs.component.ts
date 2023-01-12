@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ProgramsService } from '../../services/programs.service';
-
+import { TimeFormatService } from '../../services/timeFormat.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { ModalProgramComponent } from './modal-program/modal-program.component';
 
 @Component({
   selector: 'app-programs',
@@ -9,6 +11,8 @@ import { ProgramsService } from '../../services/programs.service';
   styleUrls: ['./programs.component.less']
 })
 export class ProgramsComponent implements OnInit {
+  public dialogConfig = new MatDialogConfig();
+  public modalDialog: MatDialogRef<ModalProgramComponent, any> | undefined;
 
   public channels: any = [];
 
@@ -30,11 +34,10 @@ export class ProgramsComponent implements OnInit {
   ];
 
 
-  constructor(private _programsService: ProgramsService) { }
+  constructor(public _timeFormatService: TimeFormatService ,private _programsService: ProgramsService, public matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this._programsService.subject.subscribe( (data: any) => {
-      console.log(data)
       this.channels = data.data;
       this.findProgramsNow();
     })
@@ -73,11 +76,6 @@ export class ProgramsComponent implements OnInit {
     });
   }
 
-  public timestampToDate = (timestamp: number) => {
-    // we need to substract because api doest work with winter hours
-    return moment.unix(timestamp).subtract(1, "hour").format('HH:mm');
-  }
-
   public changeTime = (typeTime: string) => {
     this.selectedTime = typeTime;
     if (this.selectedTime === 'now') {
@@ -92,7 +90,11 @@ export class ProgramsComponent implements OnInit {
   }
 
   public getInfo = (program: any) => {
-    console.log(program);
+    this.dialogConfig.id = "projects-modal-component";
+    this.dialogConfig.height = "auto";
+    this.dialogConfig.width = "650px";
+    this.dialogConfig.data = {programInfo: program}
+    this.modalDialog = this.matDialog.open(ModalProgramComponent, this.dialogConfig);
   }
 
 

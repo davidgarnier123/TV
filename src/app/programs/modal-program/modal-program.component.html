@@ -1,0 +1,10 @@
+<div id="contentModal">
+    <h1>{{data.programInfo.name}}</h1>
+    <p class="date">{{_timeFormatService.timestampToDate(data.programInfo.start)}} ➡ {{_timeFormatService.timestampToDate(data.programInfo.end)}}</p>
+    <img src="{{data.programInfo.icon}}" alt="programme image">
+    <p class="description">{{data.programInfo.desc}}</p>
+    <div id="moreInfo">
+        <p>{{data.programInfo.cat}}</p>
+        <p>{{data.programInfo.rating}}</p>
+    </div>
+</div>

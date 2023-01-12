@@ -1,9 +1,12 @@
 <div id="content">
-    <p id="selectOther" (click)="selectOther()">Choisir une autre date</p>
-    <div id="selectTime">
+    <!-- <p id="selectOther" (click)="selectOther()">Choisir une autre date</p> -->
+    <div id="loader" *ngIf="channels.length === 0">
+        <p>Chargement des données</p>
+      </div>
+    <div id="selectTime" *ngIf="channels.length > 0">
         <p *ngFor="let time of times" (click)="changeTime(time.type)" [ngClass]="{'selectedTime' : time.type === selectedTime}">{{time.text}}</p>
     </div>
-    <div id="channelsContainer" >
+    <div id="channelsContainer" *ngIf="channels.length > 0" >
         <div class="channel" *ngFor="let channel of channels">
             <div class="channelHeader">
                <p class="channelName">
@@ -15,7 +18,7 @@
                 <div class="programs" *ngFor="let program of channel.displayPrograms" (click)="getInfo(program)">
                     <div class="programHeader">
                         <h3>{{program.name}}</h3>
-                        <p class="dateProgram">{{timestampToDate(program.start)}} ➡ {{timestampToDate(program.end)}}</p>
+                        <p class="dateProgram">{{_timeFormatService.timestampToDate(program.start)}} ➡ {{_timeFormatService.timestampToDate(program.end)}}</p>
                     </div>
                     <img class="iconProgram" src="{{program.icon}}" alt="">
                 </div>

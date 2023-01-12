@@ -15,7 +15,6 @@ export class ProgramsService {
 
   public fetchProgramsData = () => {
       this.http.get('https://daga123-tv-api.onrender.com/getPrograms').toPromise().then( (data) => {
-        console.log(data);
         this.subject.next(data)
       })
   }
