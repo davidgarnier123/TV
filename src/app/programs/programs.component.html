@@ -6,7 +6,7 @@
     <div id="selectTime" *ngIf="channels.length > 0">
         <p *ngFor="let time of times" (click)="changeTime(time.type)" [ngClass]="{'selectedTime' : time.type === selectedTime}">{{time.text}}</p>
     </div>
-    <div id="channelsContainer" *ngIf="channels.length > 0" >
+    <div id="channelsContainer" *ngIf="channels.length > 0" [@simpleFadeAnimation]="currentState" (@simpleFadeAnimation.done)="animationFinished($event)">
         <div class="channel" *ngFor="let channel of channels">
             <div class="channelHeader">
                <p class="channelName">

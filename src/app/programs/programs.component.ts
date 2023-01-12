@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import {trigger, state, style, transition, animate } from '@angular/animations';
 import { ProgramsService } from '../../services/programs.service';
 import { TimeFormatService } from '../../services/timeFormat.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -8,7 +9,20 @@ import { ModalProgramComponent } from './modal-program/modal-program.component';
 @Component({
   selector: 'app-programs',
   templateUrl: './programs.component.html',
-  styleUrls: ['./programs.component.less']
+  styleUrls: ['./programs.component.less'],
+  animations: [
+    trigger('simpleFadeAnimation', [
+      state('hidden', style({
+        opacity: 0
+      })),
+      state('visible', style({
+        opacity: 1
+      })),
+      transition('hidden <=> visible', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class ProgramsComponent implements OnInit {
   public dialogConfig = new MatDialogConfig();
@@ -33,6 +47,7 @@ export class ProgramsComponent implements OnInit {
     }
   ];
 
+  public currentState = 'hidden';
 
   constructor(public _timeFormatService: TimeFormatService ,private _programsService: ProgramsService, public matDialog: MatDialog) { }
 
@@ -41,6 +56,23 @@ export class ProgramsComponent implements OnInit {
       this.channels = data.data;
       this.findProgramsNow();
     })
+  }
+
+  changeCurrentIndex() {
+    this.currentState = 'hidden';
+  }
+
+  animationFinished(event: any) {
+    if (event.fromState === 'void' && event.toState === 'hidden') {
+      this.currentState = 'visible';
+    } else if (event.fromState === 'visible' && event.toState === 'hidden') {
+      this.currentState = 'visible';
+      if (this.selectedTime === 'now') {
+        this.findProgramsNow();
+      } else {
+        this.findProgramTonight();
+      }
+    }
   }
 
   public findProgramsNow = () => {
@@ -77,12 +109,8 @@ export class ProgramsComponent implements OnInit {
   }
 
   public changeTime = (typeTime: string) => {
+    this.currentState = 'hidden';
     this.selectedTime = typeTime;
-    if (this.selectedTime === 'now') {
-      this.findProgramsNow();
-    } else {
-      this.findProgramTonight();
-    }
   }
   
   public selectOther = () => {
