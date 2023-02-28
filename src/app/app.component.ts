@@ -7,6 +7,7 @@ import { ProgramsService } from '../services/programs.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+  title = 'tv';
   constructor (private _programsService: ProgramsService) {
 
   }

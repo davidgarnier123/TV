@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import {trigger, state, style, transition, animate } from '@angular/animations';
+import {trigger, state, style, transition, animate, AnimationEvent } from '@angular/animations';
 import { ProgramsService } from '../../services/programs.service';
 import { TimeFormatService } from '../../services/timeFormat.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -62,7 +62,7 @@ export class ProgramsComponent implements OnInit {
     this.currentState = 'hidden';
   }
 
-  animationFinished(event: any) {
+  animationFinished(event: AnimationEvent) {
     if (event.fromState === 'void' && event.toState === 'hidden') {
       this.currentState = 'visible';
     } else if (event.fromState === 'visible' && event.toState === 'hidden') {
@@ -84,8 +84,12 @@ export class ProgramsComponent implements OnInit {
       let currentProgramIndex = chan.programs.indexOf(currentProgram);
       let nextProgram = chan.programs[currentProgramIndex + 1];
 
-      chan.displayPrograms.push(currentProgram);
-      chan.displayPrograms.push(nextProgram);
+      if (currentProgram) {
+        chan.displayPrograms.push(currentProgram);
+      }
+      if (nextProgram) {
+        chan.displayPrograms.push(nextProgram);
+      }
     });
   }
 
@@ -103,8 +107,12 @@ export class ProgramsComponent implements OnInit {
       let currentProgramIndex = chan.programs.indexOf(firstProgram);
       let nextProgram = chan.programs[currentProgramIndex + 1];
 
-      chan.displayPrograms.push(firstProgram);
-      chan.displayPrograms.push(nextProgram);
+      if (firstProgram) {
+        chan.displayPrograms.push(firstProgram);
+      }
+      if (nextProgram) {
+        chan.displayPrograms.push(nextProgram);
+      }
     });
   }
 
