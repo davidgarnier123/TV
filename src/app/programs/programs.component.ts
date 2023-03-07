@@ -29,6 +29,7 @@ export class ProgramsComponent implements OnInit {
   public modalDialog: MatDialogRef<ModalProgramComponent, any> | undefined;
 
   public channels: any = [];
+  public programs: any = [];
 
   public selectedTime = 'now';
 
@@ -53,7 +54,12 @@ export class ProgramsComponent implements OnInit {
 
   ngOnInit(): void {
     this._programsService.subject.subscribe( (data: any) => {
-      this.channels = data.data;
+      this.channels = data.channels;
+      this.programs = data.programs;
+      for (const chaine of this.channels) {
+        chaine.programs = this.programs
+        .filter( (prog: any) => prog.channel === chaine.name);
+      }
       this.findProgramsNow();
     })
   }

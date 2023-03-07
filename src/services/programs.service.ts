@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,11 @@ export class ProgramsService {
   }
 
   public fetchProgramsData = () => {
-      this.http.get('https://daga123-tv-api.onrender.com/getPrograms').toPromise().then( (data) => {
-        this.subject.next(data)
-      })
+      const request1 = this.http.get('https://tv-api-v2.onrender.com/channels');
+      const request2 = this.http.get('https://tv-api-v2.onrender.com/programs');
+
+      forkJoin([request1, request2]).subscribe(results => {
+        this.subject.next({channels: results[0], programs: results[1]})
+      });
   }
 }
