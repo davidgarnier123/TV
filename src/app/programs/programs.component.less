@@ -10,10 +10,12 @@
         font-weight: 500;
         font-size: 2em;
     }
+
     #loader:after {
         content: ' .';
         animation: dots 1s steps(5, end) infinite;
-    } 
+    }
+
     #selectOther {
         text-align: center;
         color: white;
@@ -21,15 +23,18 @@
         cursor: pointer;
         transition-duration: 0.2s;
     }
+
     #selectOther:hover {
         color: orange;
     }
+
     #selectTime {
         display: flex;
         justify-content: space-around;
         width: 50%;
         margin: 0 auto;
         margin-top: 1em;
+
         p {
             color: white;
             border: 1px solid orange;
@@ -41,14 +46,17 @@
             cursor: pointer;
             background-color: transparent;
             transition-duration: 0.2s;
+
             &.selectedTime {
                 background-color: orange;
             }
         }
     }
+
     >#channelsContainer {
         display: flex;
         flex-direction: column;
+
         >.channel {
             display: flex;
             margin: 0 auto;
@@ -56,10 +64,12 @@
             padding-top: 1em;
             width: 70%;
             flex-direction: column;
+
             >.channelHeader {
                 display: flex;
                 justify-content: center;
                 margin-bottom: 2em;
+
                 >.channelName {
                     color: orange;
                     font-size: 1.5em;
@@ -67,89 +77,175 @@
                     margin: 0;
                     text-shadow: 5px 5px 5px black;
                 }
+
                 >img {
                     width: 3em;
                 }
             }
-        >.programsWrapper {
-            display: flex;
-            justify-content: space-between;
-            >.programs {
-                display: flex;
-                flex-direction: row;
-                border: 1px solid white;
-                width: 45%;
-                text-align: center;
-                padding: 0.5em;
-                cursor: pointer;
-                transition-duration: 0.2s;
-                justify-content: space-between;
-                border-radius: 7px;
-                box-shadow: 1px 1px 10px white;
-                >.programHeader {
-                    display: flex;
-                    align-items: center; 
-                    justify-content: center;
-                    width: 45%;
-                    flex-direction: column;
-                    position: relative;
-                    >.dateProgram {
-                        color: lightgrey;
-                        margin-top: 0.5em;
-                        margin-bottom: 0.5em;
-                    }
-                    h3 {
-                        color: white;
-                        font-weight: 400;
-                        letter-spacing: 0.1em;
-                        font-size: 1.3em;
-                        text-shadow: 1px 1px 5px white;
-                    }
-                    >.moreInfo {
-                        display: flex;
-                        width: 100%;
-                        justify-content: space-around;
-                        color: rgb(190, 190, 190);
-                        margin-top: 0.5em;
-                        font-style: italic;
-                        font-size: 0.9em;
-                    }
-                }
-                >.iconProgram {
-                    width: 45%;
-                    border-radius: 7px;
-                }
-            }
 
-            >.programs:hover {
-                border: 1px solid orange;
-                box-shadow: 1px 1px 10px orange;
+            >.programsWrapper {
+                display: flex;
+                justify-content: space-between;
+
+                >.programs {
+                    display: flex;
+                    flex-direction: row;
+                    border: 1px solid white;
+                    width: 45%;
+                    text-align: center;
+                    padding: 0.5em;
+                    cursor: pointer;
+                    transition-duration: 0.2s;
+                    justify-content: space-between;
+                    border-radius: 7px;
+                    box-shadow: 1px 1px 10px white;
+
+                    >.programHeader {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 45%;
+                        flex-direction: column;
+                        position: relative;
+
+                        >.dateProgram {
+                            color: lightgrey;
+                            margin-top: 0.5em;
+                            margin-bottom: 0.5em;
+                        }
+
+                        h3 {
+                            color: white;
+                            font-weight: 400;
+                            letter-spacing: 0.1em;
+                            font-size: 1.3em;
+                            text-shadow: 1px 1px 5px white;
+                        }
+
+                        >.moreInfo {
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-around;
+                            color: rgb(190, 190, 190);
+                            margin-top: 0.5em;
+                            font-style: italic;
+                            font-size: 0.9em;
+                        }
+                    }
+
+                    >.iconProgram {
+                        width: 45%;
+                        border-radius: 7px;
+                    }
+                }
+
+                >.programs:hover {
+                    border: 1px solid orange;
+                    box-shadow: 1px 1px 10px orange;
+                }
             }
         }
-        }
+    }
+}
+
+.boxRight {
+    position: fixed;
+    top: 25%;
+    transform: rotate(80deg);
+    right: -25%;
+    opacity: 0.1;
+}
+
+.boxLeft {
+    position: fixed;
+    top: -25%;
+    transform: rotate(80deg);
+    left: 0;
+    opacity: 0.1;
+}
+
+.wave {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: .4;
+    position: absolute;
+    top: 3%;
+    left: 10%;
+    background: #0af;
+    width: 1500px;
+    height: 1300px;
+    margin-left: -150px;
+    margin-top: -250px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 7000ms infinite linear;
+}
+
+.wave.-three {
+    animation: drift 7500ms infinite linear;
+    position: fixed;
+    background-color: #77daff;
+}
+
+.wave.-two {
+    animation: drift 3000ms infinite linear;
+    opacity: .1;
+    background: black;
+    position: fixed;
+}
+
+.box:after {
+    content: '';
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+
+    from {
+        transform: rotate(360deg);
     }
 }
 
 // Animations
 @keyframes dots {
-    0%, 20% {
-      color: rgba(0,0,0,0);
-      text-shadow:
-        .25em 0 0 rgba(0,0,0,0),
-        .5em 0 0 rgba(0,0,0,0);}
+
+    0%,
+    20% {
+        color: rgba(0, 0, 0, 0);
+        text-shadow:
+            .25em 0 0 rgba(0, 0, 0, 0),
+            .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
     40% {
-      color: white;
-      text-shadow:
-        .25em 0 0 rgba(0,0,0,0),
-        .5em 0 0 rgba(0,0,0,0);}
+        color: white;
+        text-shadow:
+            .25em 0 0 rgba(0, 0, 0, 0),
+            .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
     60% {
-      text-shadow:
-        .25em 0 0 white,
-        .5em 0 0 rgba(0,0,0,0);}
-    80%, 100% {
-      text-shadow:
-        .25em 0 0 white,
-        .5em 0 0 white;}
+        text-shadow:
+            .25em 0 0 white,
+            .5em 0 0 rgba(0, 0, 0, 0);
+    }
+
+    80%,
+    100% {
+        text-shadow:
+            .25em 0 0 white,
+            .5em 0 0 white;
+    }
 }
 
 // responsive
@@ -158,6 +254,7 @@
         >#channelsContainer {
             >.channel {
                 width: 100%;
+
                 >.programsWrapper {
                     justify-content: space-around;
                 }
@@ -171,16 +268,19 @@
         #selectTime {
             width: 100%;
         }
+
         >#channelsContainer {
             >.channel {
                 >.programsWrapper {
                     >.programs {
                         flex-direction: column-reverse;
                         box-shadow: 1px 1px 10px transparent;
+
                         >.programHeader {
                             width: 100%;
                             margin-top: 1em;
                         }
+
                         >.iconProgram {
                             width: 100%;
                         }
