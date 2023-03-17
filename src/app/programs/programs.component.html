@@ -19,6 +19,10 @@
                     <div class="programHeader">
                         <h3>{{program.name}}</h3>
                         <p class="dateProgram">{{_timeFormatService.timestampToDate(program.start)}} ➡ {{_timeFormatService.timestampToDate(program.end)}}</p>
+                        <div class="moreInfo">
+                            <p>{{program.cat}}</p>
+                            <p>{{program.rating}}</p>
+                        </div>
                     </div>
                     <img class="iconProgram" src="{{program.icon}}" alt="">
                 </div>

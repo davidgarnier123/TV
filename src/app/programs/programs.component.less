@@ -37,6 +37,7 @@
             text-align: center;
             padding-top: 1em;
             padding-bottom: 1em;
+            border-radius: 7px;
             cursor: pointer;
             background-color: transparent;
             transition-duration: 0.2s;
@@ -51,7 +52,6 @@
         >.channel {
             display: flex;
             margin: 0 auto;
-            margin-bottom: 2em;
             padding-bottom: 1em;
             padding-top: 1em;
             width: 70%;
@@ -59,12 +59,13 @@
             >.channelHeader {
                 display: flex;
                 justify-content: center;
-                margin-bottom: 1em;
+                margin-bottom: 2em;
                 >.channelName {
                     color: orange;
                     font-size: 1.5em;
                     font-weight: 500;
                     margin: 0;
+                    text-shadow: 5px 5px 5px black;
                 }
                 >img {
                     width: 3em;
@@ -76,18 +77,22 @@
             >.programs {
                 display: flex;
                 flex-direction: row;
-                border: 1px solid black;
+                border: 1px solid white;
                 width: 45%;
                 text-align: center;
+                padding: 0.5em;
                 cursor: pointer;
                 transition-duration: 0.2s;
                 justify-content: space-between;
+                border-radius: 7px;
+                box-shadow: 1px 1px 10px white;
                 >.programHeader {
                     display: flex;
                     align-items: center; 
                     justify-content: center;
                     width: 45%;
                     flex-direction: column;
+                    position: relative;
                     >.dateProgram {
                         color: lightgrey;
                         margin-top: 0.5em;
@@ -97,15 +102,28 @@
                         color: white;
                         font-weight: 400;
                         letter-spacing: 0.1em;
+                        font-size: 1.3em;
+                        text-shadow: 1px 1px 5px white;
+                    }
+                    >.moreInfo {
+                        display: flex;
+                        width: 100%;
+                        justify-content: space-around;
+                        color: rgb(190, 190, 190);
+                        margin-top: 0.5em;
+                        font-style: italic;
+                        font-size: 0.9em;
                     }
                 }
                 >.iconProgram {
                     width: 45%;
+                    border-radius: 7px;
                 }
             }
 
             >.programs:hover {
                 border: 1px solid orange;
+                box-shadow: 1px 1px 10px orange;
             }
         }
         }
@@ -158,6 +176,7 @@
                 >.programsWrapper {
                     >.programs {
                         flex-direction: column-reverse;
+                        box-shadow: 1px 1px 10px transparent;
                         >.programHeader {
                             width: 100%;
                             margin-top: 1em;
