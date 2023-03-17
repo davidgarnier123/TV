@@ -135,6 +135,7 @@ export class ProgramsComponent implements OnInit {
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "auto";
     this.dialogConfig.width = "650px";
+    this.dialogConfig.panelClass = "modalInfo";
     this.dialogConfig.data = {programInfo: program}
     this.modalDialog = this.matDialog.open(ModalProgramComponent, this.dialogConfig);
   }

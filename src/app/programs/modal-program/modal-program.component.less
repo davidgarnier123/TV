@@ -1,30 +1,53 @@
 #contentModal {
-    background-color: #3D5A80;
+    background: linear-gradient(90deg, #8a254a, #3D5A80);
     height: 100%;
     display: flex;
     flex-direction: column;
     padding: 1em;
     border: 1px solid orange;
+    border-radius: 7px;
+
     h1 {
         text-align: center;
         color: orange;
     }
+
     img {
         margin-top: 1em;
         margin-bottom: 1em;
+        border-radius: 7px;
     }
+
     .date {
         text-align: center;
         color: white;
     }
+
     .description {
         color: white;
         font-size: 1.2em;
     }
+
     >#moreInfo {
         display: flex;
         justify-content: space-between;
         margin-top: 1em;
         color: orange;
+    }
+}
+
+@media only screen and (max-width: 475px) {
+
+    h1 {
+        font-size: 1.2em;
+    }
+    .date {
+        font-size: 1em !important;
+    }
+    .description {
+        font-size: 1em !important;
+    }
+    >#moreInfo {
+        font-size: 0.8em;
     }
 }
